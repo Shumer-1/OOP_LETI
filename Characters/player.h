@@ -2,7 +2,7 @@
 #define player_h
 
 #define HP_DOWN 0
-#define HP_UP 100
+
 #define MONEY_DOWN 0
 #define MONEY_UP 100
 #define DAMAGE_DOWN 0
