@@ -1,7 +1,11 @@
-#include "player.h"
-#include "controller.h"
-#include "field.h"
-#include "coords.h"
+#include "Characters/player.h"
+
+#include "Controller/controller.h"
+
+#include "Field/field.h"
+
+#include "Field/cell.h"
+
 
 int main(){ 
 

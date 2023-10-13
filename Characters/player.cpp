@@ -1,5 +1,5 @@
 #include "player.h"
-#include <iostream>
+
 
 Player::Player(int hp, int money, int points, int damage){
     if ((hp < HP_DOWN || hp > HP_UP || money < MONEY_DOWN || money > MONEY_UP || points < POINTS_DOWN || points > POINTS_UP || damage < DAMAGE_DOWN || damage > DAMAGE_UP)){

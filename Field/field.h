@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "cell.h"
-#include "coords.h"
+#include "../Field/cell.h"
+#include "../Field/coords.h"
 
 #define MAX_BORDER 19
 #define MAX_BORDER_X 39

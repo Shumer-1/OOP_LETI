@@ -1,10 +1,10 @@
 #ifndef controller_h
 #define controller_h
 
-#include "player.h"
-#include "field.h"
-#include "cell.h"
-#include "coords.h"
+#include "../Characters/player.h"
+#include "../Field/field.h"
+#include "../Field/cell.h"
+#include "../Field/coords.h"
 
 
 class Controller{
