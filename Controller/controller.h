@@ -5,10 +5,13 @@
 #include "../Field/field.h"
 #include "../Field/cell.h"
 #include "../Field/coords.h"
+#include "../Events/event.h"
+#include "../Events/heal.h"
 
 
 class Controller{
     private:
+    
     
     Player& player;
     Coords* coords;

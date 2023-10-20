@@ -99,7 +99,7 @@ Cell& Field::getCell(int x, int y){
         return field[x][y];
     }
     else{
-        static Cell cell = Cell(false);
+        static Cell cell = Cell(false, nullptr);
         return cell;
     }
 }

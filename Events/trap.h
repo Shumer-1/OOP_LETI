@@ -5,8 +5,12 @@
 #include "event.h"
 
 class TrapEvent: public Event{
+    private:
+    int damage;
+    Controller& controller;
     public:
-    void action(Controller& controller);
+    void action();
+    TrapEvent(int damage, Controller& controller);
 };
 
 #endif

@@ -4,8 +4,12 @@
 #include "event.h"
 
 class HealEvent: public Event{
+    private:
+    int heal;
+    Controller& controller;
     public:
-    void action(Controller& controller);
+    void action();
+    HealEvent(int heal, Controller& controller);
 };
 
 #endif

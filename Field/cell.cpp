@@ -1,11 +1,11 @@
-#ifndef cell_cpp
-#define cell_cpp
-
 #include "cell.h"
 
-Cell::Cell(bool passability){
-    // проверки не нужны по идее - тип bool
+Event* Cell::getEvent(){
+    return event;
+}
+Cell::Cell(bool passability, Event* event){
     this->passability = passability;
+    this->event = event;
 }
 void Cell::setPassability(bool passability){
     this->passability = passability;
@@ -14,26 +14,31 @@ bool Cell::getPassability(){
     return passability;
 }
 
-Cell::Cell(const Cell& other): passability(other.passability){}
+Cell::Cell(const Cell& other): passability(other.passability), event(other.event){}
 
 Cell& Cell::operator = (const Cell& other){
     if (this != &other){
         passability = other.passability;
-        
+        delete event;
+        event = other.event;
     }
     return *this;
 }
 
-Cell::Cell(Cell&& other): passability(false){
+Cell::Cell(Cell&& other): passability(false), event(nullptr){
     std::swap(passability, other.passability);
+    std::swap(event, other.event);
 }
 
 Cell& Cell::operator = (Cell&& other){
     if (this != &other){
-        passability = false;
+        std::swap(event, other.event);
         std::swap(passability, other.passability);
+
     }
     return *this;
 }
 
-#endif
+Cell::~Cell(){
+    delete event;
+}

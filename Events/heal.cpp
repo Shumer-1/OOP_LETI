@@ -1,5 +1,6 @@
 #include "heal.h"
 
-void HealEvent::action(Controller& controller){
-    controller.changePlayersParametrs(ParPlayer::HP, HP_DEFAULT - controller.getPlayersParametrs(ParPlayer::HP));
+void HealEvent::action(){
+    controller.changePlayersParametrs(ParPlayer::HP, heal);
 }
+HealEvent::HealEvent(int heal, Controller& controller): heal(heal), controller(controller){}

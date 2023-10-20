@@ -2,14 +2,17 @@
 #define cell_h
 
 #include <iostream>
+#include "../Events/event.h"
 
 class Cell{
         private:
         bool passability;
+        Event* event;
         // указатель на интерфейс события
 
         public:
-        Cell(bool passability=true); 
+        Cell(bool passability=true, Event* event); 
+        Event* getEvent();
         // копирование
         Cell& operator = (const Cell& other);
         Cell(const Cell& other);
@@ -19,5 +22,7 @@ class Cell{
 
         void setPassability(bool passability);
         bool getPassability();
+
+        ~Cell();
 };
 #endif
