@@ -2,13 +2,13 @@
 
 
 void Coords::setX(int x){
-    if (x > MAX_BORDER_X || x < MIN_BORDER){
+    if (x >= DEFAULT_SIZE_X || x < MIN_BORDER){
         this->x = 0;
     }
     this->x = x;
 }
 void Coords::setY(int y){
-    if (y > MAX_BORDER_Y || y < MIN_BORDER){
+    if (y >= DEFAULT_SIZE_Y || y < MIN_BORDER){
         this->y = 0;
     }
     this->y = y;
@@ -20,11 +20,11 @@ int Coords::getY() const{
     return y;
 }
 Coords::Coords(int x, int y){
-    if (x > MAX_BORDER_X || x < MIN_BORDER){
+    if (x > DEFAULT_SIZE_X || x < MIN_BORDER){
         this->x = 0;
     }
     else this->x = x;
-    if (y > MAX_BORDER_Y || y < MIN_BORDER){
+    if (y > DEFAULT_SIZE_Y || y < MIN_BORDER){
         this->y = 0;
     }
     else this->y = y;

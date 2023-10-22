@@ -2,21 +2,11 @@
 
 
 
-Field::Field(int size_x, int size_y): size_X(size_x), size_Y(size_y), start_coords(Coords()), final_coords(Coords(size_x-1, size_y-1)){
-    if (size_x > 0 && size_x <= MAX_BORDER_X){
-        size_X = size_x;
-    }
-    else{size_X = DEFAULT_SIZE_X;}
-
-    if (size_y > 0 && size_y <= MAX_BORDER_Y){
-        size_Y = size_y;
-    }
-    else{size_Y = DEFAULT_SIZE_Y;}
-
-    field = new Cell* [size_y];
+Field::Field(): size_X(DEFAULT_SIZE_X), size_Y(DEFAULT_SIZE_Y), start_coords(Coords()), final_coords(Coords(size_X-1, size_X-1)){
+    field = new Cell* [size_Y];
 
     for (int i = 0; i < size_Y; i++){
-        field[i] = new Cell[size_x];
+        field[i] = new Cell[size_X];
     }
 }
 

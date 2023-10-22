@@ -4,6 +4,9 @@
 Event* Cell::getEvent(){
     return event;
 }
+void Cell::setEvent(Event* event){
+    this->event = event;
+}
 Cell::Cell(bool passability, Event* event){
     this->passability = passability;
     this->event = event;

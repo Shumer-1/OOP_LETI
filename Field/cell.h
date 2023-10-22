@@ -14,6 +14,7 @@ class Cell{
         public:
         Cell(bool passability=true, Event* event=nullptr); 
         Event* getEvent();
+        void setEvent(Event* event);
         // копирование
         Cell& operator = (const Cell& other);
         Cell(const Cell& other);

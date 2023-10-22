@@ -11,7 +11,7 @@ int main(){
     // как сделать гейм овер лучше - пока печать с ветвлением - три состояния игры.
 
     Player player = Player();
-    Field field = Field(5, 5);
+    Field field = Field();
     int * coords = new int[2];
     coords[0] = 1;
     coords[1] = 1; 

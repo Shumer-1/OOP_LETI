@@ -6,9 +6,6 @@
 #include "cell.h"
 
 
-#define MAX_BORDER 19
-#define MAX_BORDER_X 39
-#define MAX_BORDER_Y 19
 #define MIN_BORDER 0
 #define DEFAULT_SIZE_X 20
 #define DEFAULT_SIZE_Y 10
@@ -24,7 +21,7 @@ class Field{
         Coords final_coords;
 
         public:
-        Field(int size_X=DEFAULT_SIZE_X, int size_Y=DEFAULT_SIZE_Y);
+        Field();
 
         Field(const Field& other); // копирование
         Field& operator = (const Field& other);
