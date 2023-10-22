@@ -1,6 +1,12 @@
 #ifndef COORDS_H
 #define COORDS_H
 
+#define MAX_BORDER 19
+#define MAX_BORDER_X 39
+#define MAX_BORDER_Y 19
+#define MIN_BORDER 0
+#define DEFAULT_SIZE_X 20
+#define DEFAULT_SIZE_Y 10
 
 class Coords{
         private:

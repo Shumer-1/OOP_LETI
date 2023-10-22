@@ -4,6 +4,7 @@
 #include <iostream>
 #include "../Events/event.h"
 
+class Event;
 class Cell{
         private:
         bool passability;
@@ -11,7 +12,7 @@ class Cell{
         // указатель на интерфейс события
 
         public:
-        Cell(bool passability=true, Event* event); 
+        Cell(bool passability=true, Event* event=nullptr); 
         Event* getEvent();
         // копирование
         Cell& operator = (const Cell& other);

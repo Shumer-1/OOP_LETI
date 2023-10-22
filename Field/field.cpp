@@ -1,6 +1,3 @@
-#ifndef field_cpp
-#define field_cpp
-
 #include "field.h"
 
 
@@ -118,6 +115,3 @@ Field::~Field(){
     }
     delete[] field;
 }
-
-
-#endif

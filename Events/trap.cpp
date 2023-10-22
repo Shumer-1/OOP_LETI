@@ -1,11 +1,13 @@
 #include "trap.h"
 
 void TrapEvent::action(){
-    int health = controller.getPlayersParametrs(ParPlayer::HP) - DAMAGE_TRAP;
+    int health = controller.getPlayersParametrs(ParPlayer::HP) - damage;
     if (health <= 0){
-        // game over!!!!!!!!!!!!!!!!!!!!!!!!!
+        controller.setGameOver(true);
     }
     else{
-        controller.changePlayersParametrs(ParPlayer::HP, -DAMAGE_TRAP);
+        controller.changePlayersParametrs(ParPlayer::HP, -damage);
     }
 }
+
+TrapEvent::TrapEvent(int damage, Controller& controller): controller(controller), damage(damage){}

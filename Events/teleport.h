@@ -4,7 +4,12 @@
 #include "event.h"
 
 class TeleportEvent: public Event{
-    void action(Controller& controller, Coords& coords);
+    private:
+    Controller& controller;
+    Coords coords;
+
+    void action();
+    TeleportEvent(Controller& controller, Coords& coords);
 };
 
 

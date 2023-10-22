@@ -1,8 +1,12 @@
-#ifndef controller_cpp
-#define controller_cpp
-
 #include "controller.h"
 
+
+bool Controller::getGameOver(){
+    return this->game_over;
+}
+void Controller::setGameOver(bool state){
+    this->game_over = state;
+}
 
 Controller::Controller(Player& player, int* coords, Field& field): player(player), field(field){
         if (!(coords[0] >= MIN_BORDER && coords[0] <= MAX_BORDER && coords[1] >= MIN_BORDER && coords[1] <= MAX_BORDER)){
@@ -10,17 +14,30 @@ Controller::Controller(Player& player, int* coords, Field& field): player(player
             this->coords->setY(MAX_BORDER/2);
             return;
         }
+        game_over = false;
         this->coords = new Coords();
         this->coords->setX(coords[0]);
         this->coords->setY(coords[1]);
 }
+
+bool Controller::checkingEvents(){
+    Event* event = field.getCell(coords->getX(), coords->getY()).getEvent();
+    if (event != nullptr){
+        event->action();
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 void Controller::movePlayer(Move move, int value){
     switch (move)
     {
     case Move::Down:
         {
         int i = 1;
-        while (field.getCell(coords->getX(), coords->getY()-i).getPassability() && i <= value){
+        while (field.getCell(coords->getX(), coords->getY()).getPassability() && i <= value){
             coords->setY(coords->getY()-1);
             i++;
         }
@@ -28,7 +45,7 @@ void Controller::movePlayer(Move move, int value){
     case Move::Left:
         {
         int j = 1;
-        while (field.getCell(coords->getX()-j, coords->getY()).getPassability() && j <= value){
+        while (field.getCell(coords->getX(), coords->getY()).getPassability() && j <= value){
             coords->setX(coords->getX()-j);
             j++;
         }
@@ -36,7 +53,7 @@ void Controller::movePlayer(Move move, int value){
     case Move::Right:
         {
         int k = 1;
-        while (field.getCell(coords->getX()+k, coords->getY()).getPassability() && k <= value){
+        while (field.getCell(coords->getX(), coords->getY()).getPassability() && k <= value){
             coords->setX(coords->getX()+1);
             k++;
         }
@@ -44,13 +61,17 @@ void Controller::movePlayer(Move move, int value){
     case Move::Up:
         {
         int p = 1;
-        while (field.getCell(coords->getX(), coords->getY()+p).getPassability() && p <= value){
+        while (field.getCell(coords->getX(), coords->getY()).getPassability() && p <= value){
             coords->setY(coords->getY()+1);
             p++;
         }
         break;}
     default:
         break;
+    }
+    Event* event = field.getCell(coords->getX(), coords->getY()).getEvent();
+    if (event != nullptr){
+        event->action();
     }
 }
 
@@ -90,11 +111,14 @@ int Controller::getPlayersParametrs(ParPlayer parametr){
     }
 }
 
+void Controller::setPlayersCoords(Coords& coords){
+    delete this->coords;
+    this->coords = new Coords(coords);
+}
+
 Coords* Controller::getCoords(){
     return coords;
 }
 Controller::~Controller(){
     delete coords;
 }
-
-#endif

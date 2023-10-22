@@ -1,5 +1,6 @@
 #include "cell.h"
 
+
 Event* Cell::getEvent(){
     return event;
 }

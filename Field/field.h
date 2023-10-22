@@ -1,10 +1,10 @@
-#ifndef field_h
-#define field_h
+#ifndef FIELD_H
+#define FIELD_H
 
 #include <iostream>
+#include "coords.h"
+#include "cell.h"
 
-#include "../Field/cell.h"
-#include "../Field/coords.h"
 
 #define MAX_BORDER 19
 #define MAX_BORDER_X 39
@@ -13,15 +13,7 @@
 #define DEFAULT_SIZE_X 20
 #define DEFAULT_SIZE_Y 10
 
-
-
-enum Move{
-    Up,
-    Down,
-    Left,
-    Right
-};
-
+class Cell;
 
 class Field{
         private:
