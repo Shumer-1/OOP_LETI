@@ -43,6 +43,4 @@ Cell& Cell::operator = (Cell&& other){
     return *this;
 }
 
-Cell::~Cell(){
-    delete event;
-}
+Cell::~Cell(){}

@@ -7,7 +7,7 @@
 #include "../Field/field.h"
 #include "../Events/event.h"
 
-//bool game_over;
+
 class Field;
 
 enum Move{

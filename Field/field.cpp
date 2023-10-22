@@ -83,7 +83,7 @@ Coords Field::getFinalCoords(){
 
 Cell& Field::getCell(int x, int y){
     if (x >= 0 && x < size_X && y >= 0 && y < size_Y){
-        return field[x][y];
+        return field[y][x];
     }
     else{
         static Cell cell = Cell(false, nullptr);

@@ -4,7 +4,9 @@
 #include "Field/cell.h"
 #include "Events/trap.h"
 #include "Events/heal.h"
+#include "Field/makeField.h"
 
+#include <random>
 
 int main(){ 
     //game_over = 0;
@@ -12,27 +14,31 @@ int main(){
 
     Player player = Player();
     Field field = Field();
+
     int * coords = new int[2];
     coords[0] = 1;
     coords[1] = 1; 
 
 
-
     Controller controller = Controller(player,coords, field);
+    MakeField::firstLevel(controller, field);
+    MakeField::generateLevel(controller, field);
+    MakeField::showField(field);
     delete [] coords;
     std::cout << controller.getCoords()->getX() << '\n';
     std::cout << controller.getCoords()->getY() << '\n';
 
     Event* event = new TrapEvent(10, controller);
+    field.getCell(1, 2).setEvent(event);
     controller.movePlayer(Move::Up, 10);
-    delete event;
 
-
+    
     std::cout << controller.getCoords()->getX() << '\n';
     std::cout << controller.getCoords()->getY() << '\n';
 
     Field new_field = Field(field);
     std::cout << new_field.getStartCoords().getX() << std::endl;
+
     // new_field.getCell(0,0).setPassability(false);
 
     // std::cout << new_field.getCell(0, 0).getPassability() << std::endl;
