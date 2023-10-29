@@ -5,3 +5,7 @@ void TeleportEvent::action(){
 
 }
 TeleportEvent::TeleportEvent(Controller& controller, Coords& coords):controller(controller), coords(coords){}
+
+TeleportEvent* TeleportEvent::copy(){
+    return new TeleportEvent(*this);
+}

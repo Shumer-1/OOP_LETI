@@ -11,6 +11,7 @@ class TrapEvent: public Event{
     public:
     void action();
     TrapEvent(int damage, Controller& controller);
+    TrapEvent* copy();
 };
 
 #endif

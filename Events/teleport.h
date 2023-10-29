@@ -10,6 +10,7 @@ class TeleportEvent: public Event{
     public:
     void action();
     TeleportEvent(Controller& controller, Coords& coords);
+    TeleportEvent* copy();
 };
 
 

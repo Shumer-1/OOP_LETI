@@ -1,5 +1,6 @@
 #include "cell.h"
 
+// сделать норм копирование? Тогда новые объекты каждый раз
 
 Event* Cell::getEvent(){
     return event;
@@ -18,29 +19,42 @@ bool Cell::getPassability(){
     return passability;
 }
 
-Cell::Cell(const Cell& other): passability(other.passability), event(other.event){}
+Cell::Cell(const Cell& other): passability(other.passability){
+    if (other.event) {
+        event = other.event->copy();
+    }
+}
 
-Cell& Cell::operator = (const Cell& other){
+Cell& Cell::operator=(const Cell& other){
     if (this != &other){
-        passability = other.passability;
-        delete event;
-        event = other.event;
+        Cell temp(other);
+        std::swap(passability, temp.passability);
+        if (other.event) {
+            event = other.event->copy();
+        }
     }
     return *this;
 }
 
-Cell::Cell(Cell&& other): passability(false), event(nullptr){
+Cell::Cell(Cell&& other): passability(true), event(nullptr){
     std::swap(passability, other.passability);
-    std::swap(event, other.event);
+    if (other.event) {
+        event = other.event->copy();
+    }
 }
 
-Cell& Cell::operator = (Cell&& other){
+Cell& Cell::operator=(Cell&& other){
     if (this != &other){
-        std::swap(event, other.event);
         std::swap(passability, other.passability);
-
+        if (other.event) {
+            event = other.event->copy();
+        }
     }
     return *this;
 }
 
-Cell::~Cell(){}
+Cell::~Cell(){
+    if (event != nullptr){
+        //delete event;
+    }
+}

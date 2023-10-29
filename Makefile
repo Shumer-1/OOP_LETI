@@ -1,6 +1,6 @@
 f_all: all clean
-all: main.o player.o field.o controller.o  cell.o coords.o heal.o teleport.o trap.o makeField.o
-	g++ main.o player.o field.o controller.o cell.o coords.o heal.o trap.o teleport.o makeField.o -o main
+all: main.o player.o field.o controller.o  cell.o coords.o heal.o teleport.o trap.o makeField.o showField.o
+	g++ main.o player.o field.o controller.o cell.o coords.o heal.o trap.o teleport.o makeField.o showField.o -o main
 main.o: main.cpp Characters/player.h Controller/controller.h Field/field.h Field/cell.h Field/coords.h Events/event.h Events/heal.h Events/teleport.h Events/trap.h
 	g++ -c main.cpp
 player.o: Characters/player.cpp Characters/player.h
@@ -21,5 +21,7 @@ teleport.o: Events/event.h Controller/controller.h Events/teleport.h Events/tele
 	g++ -c Events/teleport.cpp
 makeField.o: Controller/controller.h Field/field.h Field/makeField.cpp Field/makeField.h
 	g++ -c Field/makeField.cpp
+showField.o: Field/showField.cpp Field/showField.h Field/field.h
+	g++ -c Field/showField.cpp
 clean:
 	rm -rf *.o

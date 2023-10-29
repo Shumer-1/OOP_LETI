@@ -3,47 +3,12 @@
 #include "../Events/trap.h"
 #include "../Events/teleport.h"
 #include "../Controller/controller.h"
+#include "field.h"
 
-void MakeField::makeWall(Coords& first, Coords& second, Field& field){
-    if (first.getX() != second.getX()){
-        for (int i = first.getX(); i < second.getX(); i++){
-            field.getCell(i, first.getY()).setPassability(false);
-        }
-    }
-    if (first.getY() != second.getY()){
-        for (int i = first.getY(); i < second.getY(); i++){
-            field.getCell(first.getX(), i).setPassability(false);
-        }
-    }
-    
-}
+#define FREQUENCY 3
 
-void MakeField::firstLevel(Controller& contr, Field& field){
-    // 10y на 20x
-    for (int i = 0; i < field.getSizeY(); i++){
-        for (int j = 0; j < field.getSizeY(); j++){
-            field.getCell(j,i);
-        }
-    }
-    Coords first = Coords(5, 5); 
-    Coords second = Coords(10, 5);
-    makeWall(first, second, field);
-    first = Coords(5, 5); 
-    second = Coords(5, 10);
-    makeWall(first, second, field);
-    Event* event = new TrapEvent(10, contr);
-    field.getCell(0, 1).setEvent(event);
-    field.getCell(18, 9).setEvent(event);
-    Event* heal = new HealEvent(10, contr);
-    field.getCell(19, 0).setEvent(event);
-    Coords coords = Coords(0, 9);
-    Event* tel = new TeleportEvent(contr, coords);
-    field.getCell(4, 4).setEvent(event);
-}
-
-
-
-void MakeField::generateLevel(Controller& contr, Field& field){
+Field MakeField::generateLevel(Controller& contr){
+    Field field = Field();
     while (true){
         std::random_device rand_wall;
         std::random_device rand_event;
@@ -58,7 +23,6 @@ void MakeField::generateLevel(Controller& contr, Field& field){
         long rand = rand_event();
         if (field.getCell(rand % DEFAULT_SIZE_X, rand % DEFAULT_SIZE_Y).getEvent() == nullptr){
             field.getCell(rand % DEFAULT_SIZE_X, rand % DEFAULT_SIZE_Y).setEvent(tel);
-            
         }
         rand = rand_event();
         if (field.getCell(rand % DEFAULT_SIZE_X, rand % DEFAULT_SIZE_Y).getEvent() == nullptr){
@@ -72,18 +36,14 @@ void MakeField::generateLevel(Controller& contr, Field& field){
         for (int i = 0; i < field.getSizeY(); i++){
             for (int j = 0; j < field.getSizeX(); j++){
                 rand = rand_wall();
-                if (rand % 3 == 0 && field.getCell(j, i).getEvent() == nullptr){
+                if (rand % FREQUENCY == 0 && field.getCell(j, i).getEvent() == nullptr){
                     field.getCell(j, i).setPassability(false);
                 }
             }
         }
         if (checkPassability(field, field.getStartCoords().getX(), field.getStartCoords().getY())){
+            return field;
             break;
-        }
-        else{
-            delete heal;
-            delete trap;
-            delete tel;
         }
     }
 }
@@ -101,14 +61,17 @@ bool MakeField::checkPassability(Field& field, int x, int y){
 }
 
 
-void MakeField::showField(Field& field){
-    for (int i = 0; i < field.getSizeY(); i++){
-        for (int j = 0; j < field.getSizeX(); j++){
-            if (field.getCell(j, i).getPassability()){
-                std::cout << '.';
-            }
-            else {std::cout << '|';}
-        }
-        std::cout << '\n';
-    }
-}
+// void MakeField::showField(Field& field){
+//     for (int i = 0; i < field.getSizeY(); i++){
+//         for (int j = 0; j < field.getSizeX(); j++){
+//             if (field.getCell(j, i).getEvent() != nullptr){
+//                 std::cout << '0';
+//             }
+//             else if (field.getCell(j, i).getPassability()){
+//                 std::cout << '.';
+//             }
+//             else {std::cout << '|';}
+//         }
+//         std::cout << '\n';
+//     }
+// }

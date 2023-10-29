@@ -6,10 +6,6 @@
 #include "cell.h"
 
 
-#define MIN_BORDER 0
-#define DEFAULT_SIZE_X 20
-#define DEFAULT_SIZE_Y 10
-
 class Cell;
 
 class Field{

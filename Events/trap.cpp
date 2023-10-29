@@ -11,3 +11,7 @@ void TrapEvent::action(){
 }
 
 TrapEvent::TrapEvent(int damage, Controller& controller): controller(controller), damage(damage){}
+
+TrapEvent* TrapEvent::copy(){
+    return new TrapEvent(*this);
+}
