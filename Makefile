@@ -1,8 +1,10 @@
 f_all: all clean
-all: main.o player.o field.o controller.o  cell.o coords.o heal.o teleport.o trap.o makeField.o showField.o
-	g++ main.o player.o field.o controller.o cell.o coords.o heal.o trap.o teleport.o makeField.o showField.o -o main
-main.o: main.cpp Characters/player.h Controller/controller.h Field/field.h Field/cell.h Field/coords.h Events/event.h Events/heal.h Events/teleport.h Events/trap.h
+all: main.o player.o field.o controller.o  cell.o coords.o heal.o teleport.o trap.o makeField.o showField.o readFileCommand.o inputAction.o game.o
+	g++ main.o player.o field.o controller.o cell.o coords.o heal.o trap.o teleport.o makeField.o showField.o readFileCommand.o inputAction.o game.o -o main
+main.o: main.cpp Characters/player.h Controller/controller.h Field/field.h Field/cell.h Field/coords.h Events/event.h Events/heal.h Events/teleport.h Events/trap.h Game/game.h
 	g++ -c main.cpp
+game.o: Characters/player.h Field/field.h Controller/controller.h Field/cell.h Field/coords.h Events/heal.h Events/teleport.h Events/trap.h Field/makeField.h Field/showField.h InputAction/readFileCommand.h InputAction/inputAction.h Game/game.h Game/game.cpp
+	g++ -c Game/game.cpp
 player.o: Characters/player.cpp Characters/player.h
 	g++ -c Characters/player.cpp
 field.o: Field/field.cpp Field/field.h Field/cell.h Field/coords.h Events/event.h Controller/controller.h
@@ -23,5 +25,9 @@ makeField.o: Controller/controller.h Field/field.h Field/makeField.cpp Field/mak
 	g++ -c Field/makeField.cpp
 showField.o: Field/showField.cpp Field/showField.h Field/field.h
 	g++ -c Field/showField.cpp
+readFileCommand.o: InputAction/readFileCommand.cpp InputAction/readFileCommand.h
+	g++ -c InputAction/readFileCommand.cpp
+inputAction.o: InputAction/inputAction.cpp InputAction/inputAction.h InputAction/readFileCommand.h
+	g++ -c InputAction/inputAction.cpp
 clean:
 	rm -rf *.o

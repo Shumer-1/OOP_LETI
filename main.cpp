@@ -6,36 +6,49 @@
 #include "Events/heal.h"
 #include "Field/makeField.h"
 #include "Field/showField.h"
-#include <random>
+#include "InputAction/readFileCommand.h"
+#include "InputAction/inputAction.h"
+#include "Game/game.h"
+#include <vector>
 
-int main(){ 
+
+int main(){
+    Player player = Player();
+    Field field = Field();
+    Controller contr = Controller(player, field);
+    field = MakeField::generateLevel(contr);
+    Game game = Game(contr, player, field);
+    game.startGame();
     //game_over = 0;
     // как сделать гейм овер лучше - пока печать с ветвлением - три состояния игры.
 
-    Player player = Player();
-    Field field = Field();
-    int * coords = new int[2];
-    coords[0] = 1;
-    coords[1] = 1; 
+    // Player player = Player();
+    // Field field = Field();
+    // int * coords = new int[2];
+    // coords[0] = 1;
+    // coords[1] = 1; 
 
-    Controller controller = Controller(player,coords, field);
-    field = MakeField::generateLevel(controller);
-    Show::showField(field);
-    delete [] coords;
-    std::cout << controller.getCoords()->getX() << '\n';
-    std::cout << controller.getCoords()->getY() << '\n';
+    // Controller controller = Controller(player, coords, field);
+    // field = MakeField::generateLevel(controller);
+    // Show::showField(field);
+    // delete [] coords;
+    // std::cout << controller.getCoords()->getX() << '\n';
+    // std::cout << controller.getCoords()->getY() << '\n';
 
-    Event* event = new TrapEvent(10, controller);
-    field.getCell(1, 2).setEvent(event);
-    controller.movePlayer(Move::Up, 10);
+    // field.getCell(1, 2).setEvent(new TrapEvent(10, controller));
+    // controller.movePlayer(Move::Up, 10);
 
     
-    std::cout << controller.getCoords()->getX() << '\n';
-    std::cout << controller.getCoords()->getY() << '\n';
+    // std::cout << controller.getCoords()->getX() << '\n';
+    // std::cout << controller.getCoords()->getY() << '\n';
 
-    Field new_field = Field(field);
-    std::cout << new_field.getStartCoords().getX() << "!!!!!!!!!!!!!!"<< std::endl;
+    // Field new_field = Field(field);
+    // std::cout << new_field.getStartCoords().getX() << "!!!!!!!!!!!!!!"<< std::endl;
 
+
+    // for (const auto &key: keys) {
+    //     std::cout << key << std::endl;
+    // }
 
     // new_field.getCell(0,0).setPassability(false);
 

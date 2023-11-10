@@ -28,7 +28,7 @@ class Controller{
     public:
     bool getGameOver();
     void setGameOver(bool state);
-    Controller(Player& player, int* coords, Field& field);
+    Controller(Player& player, Field& field);
     void movePlayer(Move move, int value);
     void changePlayersParametrs(ParPlayer parametr, int value);
     int getPlayersParametrs(ParPlayer parametr);

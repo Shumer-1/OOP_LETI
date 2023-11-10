@@ -8,13 +8,12 @@
 #define FREQUENCY 3
 
 Field MakeField::generateLevel(Controller& contr){
-    Field field = Field();
     while (true){
         std::random_device rand_wall;
         std::random_device rand_event;
 
-        field = Field();
-
+        Field field = Field();
+       
         HealEvent *heal = new HealEvent(10, contr);
         TrapEvent *trap = new TrapEvent(10, contr);
         Coords coords = Coords(field.getSizeX()-1, field.getSizeY()-1);
@@ -33,8 +32,8 @@ Field MakeField::generateLevel(Controller& contr){
             field.getCell(rand % DEFAULT_SIZE_X, rand % DEFAULT_SIZE_Y).setEvent(trap);
         }
 
-        for (int i = 0; i < field.getSizeY(); i++){
-            for (int j = 0; j < field.getSizeX(); j++){
+        for (int i = 0; i < DEFAULT_SIZE_Y; i++){
+            for (int j = 0; j < DEFAULT_SIZE_X; j++){
                 rand = rand_wall();
                 if (rand % FREQUENCY == 0 && field.getCell(j, i).getEvent() == nullptr){
                     field.getCell(j, i).setPassability(false);

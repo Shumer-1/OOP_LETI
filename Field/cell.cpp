@@ -19,42 +19,31 @@ bool Cell::getPassability(){
     return passability;
 }
 
-Cell::Cell(const Cell& other): passability(other.passability){
-    if (other.event) {
-        event = other.event->copy();
-    }
+Cell::Cell(const Cell &cell) : passability(cell.passability), event(cell.event == nullptr ? nullptr : cell.event->copy()) {
 }
 
-Cell& Cell::operator=(const Cell& other){
-    if (this != &other){
-        Cell temp(other);
-        std::swap(passability, temp.passability);
-        if (other.event) {
-            event = other.event->copy();
-        }
+Cell &Cell::operator=(const Cell &cell) {
+    if (this != &cell) {
+        passability = cell.passability;
+        delete event;
+        event = cell.event == nullptr ? nullptr : cell.event->copy();
     }
     return *this;
 }
 
-Cell::Cell(Cell&& other): passability(true), event(nullptr){
-    std::swap(passability, other.passability);
-    if (other.event) {
-        event = other.event->copy();
-    }
+Cell::Cell(Cell &&cell): passability(true), event(nullptr) {
+    std::swap(passability, cell.passability);
+    std::swap(event, cell.event);
 }
 
-Cell& Cell::operator=(Cell&& other){
-    if (this != &other){
-        std::swap(passability, other.passability);
-        if (other.event) {
-            event = other.event->copy();
-        }
+Cell &Cell::operator=(Cell &&cell) {
+    if (this != &cell) {
+        std::swap(passability, cell.passability);
+        std::swap(event, cell.event);
     }
     return *this;
 }
 
 Cell::~Cell(){
-    if (event != nullptr){
-        //delete event;
-    }
+    delete event;
 }

@@ -99,9 +99,10 @@ int Field::getSizeY(){
 }
 
 Field::~Field(){
-    
-    for (int i = 0; i < size_Y; i++){
-        delete[] field[i];
+    if (field != nullptr){
+        for (int i = 0; i < size_Y; i++){
+            //delete[] field[i];
+        }
+        delete[] field;
     }
-    delete[] field;
 }

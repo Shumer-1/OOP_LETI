@@ -8,16 +8,11 @@ void Controller::setGameOver(bool state){
     this->game_over = state;
 }
 
-Controller::Controller(Player& player, int* coords, Field& field): player(player), field(field){
-        if (!(coords[0] >= MIN_BORDER && coords[0] <= MAX_BORDER && coords[1] >= MIN_BORDER && coords[1] <= MAX_BORDER)){
-            this->coords->setX(MAX_BORDER/2);
-            this->coords->setY(MAX_BORDER/2);
-            return;
-        }
+Controller::Controller(Player& player, Field& field): player(player), field(field){
         game_over = false;
         this->coords = new Coords();
-        this->coords->setX(coords[0]);
-        this->coords->setY(coords[1]);
+        this->coords->setX(0);
+        this->coords->setY(0);
 }
 
 bool Controller::checkingEvents(){
@@ -37,7 +32,7 @@ void Controller::movePlayer(Move move, int value){
     case Move::Down:
         {
         int i = 1;
-        while (field.getCell(coords->getX(), coords->getY()).getPassability() && i <= value){
+        while (field.getCell(coords->getX(), coords->getY()-1).getPassability() && i <= value){
             coords->setY(coords->getY()-1);
             i++;
         }
@@ -45,7 +40,7 @@ void Controller::movePlayer(Move move, int value){
     case Move::Left:
         {
         int j = 1;
-        while (field.getCell(coords->getX(), coords->getY()).getPassability() && j <= value){
+        while (field.getCell(coords->getX()-1, coords->getY()).getPassability() && j <= value){
             coords->setX(coords->getX()-j);
             j++;
         }
@@ -53,7 +48,7 @@ void Controller::movePlayer(Move move, int value){
     case Move::Right:
         {
         int k = 1;
-        while (field.getCell(coords->getX(), coords->getY()).getPassability() && k <= value){
+        while (field.getCell(coords->getX()+1, coords->getY()).getPassability() && k <= value){
             coords->setX(coords->getX()+1);
             k++;
         }
@@ -61,7 +56,7 @@ void Controller::movePlayer(Move move, int value){
     case Move::Up:
         {
         int p = 1;
-        while (field.getCell(coords->getX(), coords->getY()).getPassability() && p <= value){
+        while (field.getCell(coords->getX(), coords->getY()+1).getPassability() && p <= value){
             coords->setY(coords->getY()+1);
             p++;
         }
