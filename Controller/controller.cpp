@@ -11,8 +11,8 @@ void Controller::setGameOver(bool state){
 Controller::Controller(Player& player, Field& field): player(player), field(field){
         game_over = false;
         this->coords = new Coords();
-        this->coords->setX(0);
-        this->coords->setY(0);
+        this->coords->setX(1);
+        this->coords->setY(1);
 }
 
 bool Controller::checkingEvents(){

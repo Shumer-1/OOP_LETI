@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <fstream>
+#define COUNT_OF_CMDS 5
 
 enum Commands{
     Command_Up,

@@ -8,3 +8,6 @@ HealEvent::HealEvent(int heal, Controller& controller): heal(heal), controller(c
 HealEvent* HealEvent::copy(){
     return new HealEvent(*this);
 }
+char HealEvent::icon(){
+    return 'h';
+}

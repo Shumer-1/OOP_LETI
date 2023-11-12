@@ -9,3 +9,6 @@ TeleportEvent::TeleportEvent(Controller& controller, Coords& coords):controller(
 TeleportEvent* TeleportEvent::copy(){
     return new TeleportEvent(*this);
 }
+char TeleportEvent::icon(){
+    return 'T';
+}

@@ -48,6 +48,14 @@ void Game::isPlaying(){
             controller.movePlayer(move, 1);
             Show::showField(field, controller);
             std::cout << player.getHp() << " HP\n";
+            if (controller.getCoords()->getX() == DEFAULT_SIZE_X-1 && controller.getCoords()->getY() == DEFAULT_SIZE_Y-1){
+                std::cout << "VICTORY!\n";
+                break;
+            }
+            if (player.getHp() == 0){
+                std::cout << "You DIED!\n";
+                break;
+            }
         }
     }
     endGame();

@@ -2,13 +2,13 @@
 
 
 void Coords::setX(int x){
-    if (x >= DEFAULT_SIZE_X || x < MIN_BORDER){
+    if (x > DEFAULT_SIZE_X || x < MIN_BORDER){
         this->x = 0;
     }
     this->x = x;
 }
 void Coords::setY(int y){
-    if (y >= DEFAULT_SIZE_Y || y < MIN_BORDER){
+    if (y > DEFAULT_SIZE_Y || y < MIN_BORDER){
         this->y = 0;
     }
     this->y = y;

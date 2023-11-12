@@ -7,7 +7,7 @@ void Show::showField(Field& field, Controller& contr){
                 std::cout << 'P';
             }
             else if (field.getCell(j, i).getEvent() != nullptr){
-                std::cout << '?';
+                std::cout << field.getCell(j, i).getEvent()->icon();
             }
             else if (field.getCell(j, i).getPassability()){
                 std::cout << '.';

@@ -21,8 +21,8 @@ Player::Player(){
     money = MONEY_DEFAULT;
 }
 void Player::setHp(int hp){
-    if (hp < HP_DOWN || hp > HP_DEFAULT){
-        this->hp = HP_DEFAULT;
+    if (hp < HP_DOWN){
+        this->hp = 0;
         return;
     }  
     this->hp = hp;
