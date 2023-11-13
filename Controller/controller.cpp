@@ -117,3 +117,10 @@ Coords* Controller::getCoords(){
 Controller::~Controller(){
     delete coords;
 }
+void Controller::setEndCoords(int x, int y){
+    end.setX(x);
+    end.setY(y);
+}
+Coords Controller::getEndCoords(){
+    return end;
+}

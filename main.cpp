@@ -16,9 +16,9 @@ int main(){
     Player player = Player();
     Field field = Field();
     Controller contr = Controller(player, field);
-    field = MakeField::generateNew(contr);
-    Show::showField(field, contr);
-    //field = MakeField::generateLevel(contr);
+   
+    //Show::showField(field, contr);
+    field = MakeField::generateLevel(contr);
     Game game = Game(contr, player, field);
     game.startGame();
     //game_over = 0;

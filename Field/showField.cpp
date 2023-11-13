@@ -3,6 +3,8 @@
 void Show::showField(Field& field, Controller& contr){
     for (int i = 0; i < field.getSizeY(); i++){
         for (int j = 0; j < field.getSizeX(); j++){
+            if (contr.getEndCoords().getX() == j && contr.getEndCoords().getY() == i)
+                std::cout << 'E';
             if (contr.getCoords()->getX() == j && contr.getCoords()->getY() == i){
                 std::cout << 'P';
             }

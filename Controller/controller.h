@@ -23,7 +23,7 @@ class Controller{
     Player& player;
     Coords* coords;
     Field& field;
-
+    Coords end;
 
     public:
     bool getGameOver();
@@ -36,6 +36,8 @@ class Controller{
     void setPlayersCoords(Coords& coords);
     bool checkingEvents();
     ~Controller();
+    void setEndCoords(int x, int y);
+    Coords getEndCoords();
 
 };
 

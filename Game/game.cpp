@@ -31,6 +31,9 @@ void Game::isPlaying(){
             Show::showField(field, controller);
             std::cout << player.getHp() << " HP\n";
         }
+        // if (cmd == Command_Jump){
+            
+        // }
         else{
             Move move;
             if (cmd == Command_Up){

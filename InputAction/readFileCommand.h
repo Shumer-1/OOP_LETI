@@ -12,7 +12,8 @@ enum Commands{
     Command_Right,
     Command_Left,
     Command_EndGame,
-    Command_Empty
+    Command_Empty,
+    Command_Jump
 };
 
 class FileRead{

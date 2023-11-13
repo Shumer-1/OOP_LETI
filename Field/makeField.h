@@ -9,13 +9,13 @@ class Field;
 
 class MakeField{
     // статик класс, в котором есть только заполнение поля
-    //bool static deadend(int x, int y, Field& field);
+    bool static deadend(int x, int y, Field& field);
     public:
+    void static mazemake(Field& field);
     Field static generateLevel(Controller& contr);
     Field static generateNew(Controller& contr);
     bool static checkPassability(Field& field, int x, int y);
     //void static showField(Field& field);
 };
-bool deadend(int x, int y, Field& field);
-void mazemake(Field& field);
+
 #endif

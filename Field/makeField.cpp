@@ -6,6 +6,7 @@
 #include "field.h"
 #include <vector>
 #define FREQUENCY 3
+#define LIMIT 1000
 
 Field MakeField::generateNew(Controller& contr){
     std::random_device rand;
@@ -42,10 +43,18 @@ Field MakeField::generateNew(Controller& contr){
             break;
         }
     }
+    for (int i = DEFAULT_SIZE_Y-1; i >=0 ; i--){
+        for (int j = DEFAULT_SIZE_X; j >= 0; j--){
+            if (checkPassability(field, j, i)){
+                contr.setEndCoords(j, i);
+            }
+        }
+    }
     return field;
 }
 
-void mazemake(Field& field){
+void MakeField::mazemake(Field& field){
+    std::random_device dev;
     int x, y, c, a; 
     bool b;
     int height = DEFAULT_SIZE_Y;
@@ -55,10 +64,10 @@ void mazemake(Field& field){
             field.getCell(j, i).setPassability(false);
 
     x = 3; y = 3; a = 0; // Точка приземления крота и счетчик
-    while(a < 10000){ // Да, простите, костыль, иначе есть как, но лень
+    while(a < LIMIT){
         field.getCell(y, x).setPassability(true); a++;
         while(1){ // Бесконечный цикл, который прерывается только тупиком
-            c = rand()%4; // Напоминаю, что крот прорывает
+            c = dev()%4; // Напоминаю, что крот прорывает
             switch(c){  // по две клетки в одном направлении за прыжок
                 case 0: if(y != 1)
                     if(field.getCell(x, y-2).getPassability() == false){ // Вверх
@@ -91,14 +100,14 @@ void mazemake(Field& field){
         
         if(deadend(x,y,field)) // Вытаскиваем крота из тупика
             do{
-                x = 2*(rand()%((width-1)/2))+1;
-                y = 2*(rand()%((height-1)/2))+1;
+                x = 2*(dev()%((width-1)/2))+1;
+                y = 2*(dev()%((height-1)/2))+1;
             }
             while(field.getCell(x, y).getPassability() != true);
     }
 } // На этом и все.
 
-bool deadend(int x, int y, Field& field){
+bool MakeField::deadend(int x, int y, Field& field){
 	int a = 0;
 	int height = DEFAULT_SIZE_Y;
     int width = DEFAULT_SIZE_X;

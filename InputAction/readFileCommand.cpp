@@ -7,14 +7,14 @@ FileRead::FileRead(){
     std::string line_RIGHT;
     std::string line_LEFT;
     std::string line_ENDGAME;
-    std::ifstream in("commands.txt");
+    std::string line_JUMP;
+    std::fstream in("commands.txt");
     if (in.is_open()){
-        if (!(std::getline(in, line_UP) && std::getline(in, line_DOWN) && std::getline(in, line_RIGHT) && std::getline(in, line_LEFT) && std::getline(in, line_ENDGAME))){
+        if (!(std::getline(in, line_UP) && std::getline(in, line_DOWN) && std::getline(in, line_RIGHT) && std::getline(in, line_LEFT) && std::getline(in, line_ENDGAME) && std::getline(in, line_JUMP))){
             setDefault();
-            
         }
         else{
-            std::string test = line_DOWN + line_ENDGAME + line_LEFT + line_RIGHT + line_UP;
+            std::string test = line_DOWN + line_ENDGAME + line_LEFT + line_RIGHT + line_UP + line_JUMP;
             int flag_repeat = 0;
             for (int i = 0; i < COUNT_OF_CMDS; i++){
                 for (int j = i+1; j < COUNT_OF_CMDS; j++){
@@ -24,20 +24,26 @@ FileRead::FileRead(){
                     } 
                 }
             }
+            
             if (flag_repeat == 1){
                 setDefault();
             }
+
             else{
                 control_keys[line_UP] = Commands::Command_Up;
                 control_keys[line_DOWN] = Commands::Command_Down;
                 control_keys[line_LEFT] = Commands::Command_Left;
                 control_keys[line_RIGHT] = Commands::Command_Right;
                 control_keys[line_ENDGAME] = Commands::Command_EndGame;
+                control_keys[line_JUMP] = Commands::Command_Jump;
             }
             
         }
     }
-    in.close();
+    else{
+        setDefault();
+    }
+
 }
 
 void FileRead::setDefault(){
@@ -47,6 +53,7 @@ void FileRead::setDefault(){
     control_keys["a"] = Commands::Command_Left;
     control_keys["d"] = Commands::Command_Right;
     control_keys["p"] = Commands::Command_EndGame;
+    //control_keys[" "] = Commands::Command_Jump;
 }
 
 std::map<std::string, Commands> FileRead::getControlKeys(){
