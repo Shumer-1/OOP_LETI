@@ -11,6 +11,10 @@
 #include "../Field/showField.h"
 #include "../InputAction/inputAction.h"
 #include "../InputAction/readFileCommand.h"
+#include "./Observer.hpp"
+#include "./HPObserver.h"
+#include "./CoordsObs.hpp"
+#include "./gameTracker.hpp"
 #include <iostream>
 
 enum GameState{
@@ -20,6 +24,7 @@ enum GameState{
 };
 class Show;
 class MakeField;
+class GameTracker;
 
 class Game{
     private:

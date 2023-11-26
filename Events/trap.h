@@ -12,7 +12,6 @@ class TrapEvent: public Event{
     void action();
     TrapEvent(int damage, Controller& controller);
     TrapEvent* copy();
-    char icon();
 };
 
 #endif

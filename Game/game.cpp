@@ -20,21 +20,17 @@ void Game::isPlaying(){
 
     FileRead fr = FileRead();
     InputAction ia = InputAction(fr.getControlKeys());
+    HPObserver hp_obs = HPObserver(controller);
+    CoordsObs coords_obs = CoordsObs(controller);
+    GameTracker game_tracker = GameTracker(hp_obs, coords_obs, controller, field);
+
     while (true){
+        game_tracker.gameTracking();
         Commands cmd = ia.readAction();
         if (cmd == Command_EndGame){
-            Show::showField(field, controller);
-            std::cout << player.getHp()<< " HP\n"; 
             break;
         }
-        if (cmd == Command_Empty){
-            Show::showField(field, controller);
-            std::cout << player.getHp() << " HP\n";
-        }
-        // if (cmd == Command_Jump){
-            
-        // }
-        else{
+        if (cmd != Command_Empty && cmd != Command_EndGame){
             Move move;
             if (cmd == Command_Up){
                 move = Down;
@@ -49,8 +45,6 @@ void Game::isPlaying(){
                 move = Right;
             }
             controller.movePlayer(move, 1);
-            Show::showField(field, controller);
-            std::cout << player.getHp() << " HP\n";
             if (controller.getCoords()->getX() == DEFAULT_SIZE_X-1 && controller.getCoords()->getY() == DEFAULT_SIZE_Y-1){
                 std::cout << "VICTORY!\n";
                 break;

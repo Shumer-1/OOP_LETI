@@ -9,6 +9,3 @@ TrapEvent::TrapEvent(int damage, Controller& controller): controller(controller)
 TrapEvent* TrapEvent::copy(){
     return new TrapEvent(*this);
 }
-char TrapEvent::icon(){
-    return 'W';
-}

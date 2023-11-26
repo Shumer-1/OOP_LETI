@@ -11,7 +11,7 @@ Commands InputAction::readAction(){
     c[0] = getchar();
     system("stty cooked");
     // std::string temp = c;
-    system("clear");
+    //system("clear");
 
     if (cmds.count(c) == 1){
         Commands cmd = cmds[c];

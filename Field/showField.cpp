@@ -1,6 +1,7 @@
 #include "showField.h"
 
 void Show::showField(Field& field, Controller& contr){
+    std::cout << '\n';
     for (int i = 0; i < field.getSizeY(); i++){
         for (int j = 0; j < field.getSizeX(); j++){
             if (contr.getEndCoords().getX() == j && contr.getEndCoords().getY() == i)
@@ -9,7 +10,22 @@ void Show::showField(Field& field, Controller& contr){
                 std::cout << 'P';
             }
             else if (field.getCell(j, i).getEvent() != nullptr){
-                std::cout << field.getCell(j, i).getEvent()->icon();
+                TrapEvent *ev = dynamic_cast<TrapEvent*>(field.getCell(j, i).getEvent());
+                if (ev != nullptr){
+                    std::cout << 'W'; 
+                    continue;
+                }
+                HealEvent *ev1 = dynamic_cast<HealEvent*>(field.getCell(j, i).getEvent());
+                if (ev1 != nullptr){
+                    std::cout << 'H'; 
+                    continue;
+                }
+                TeleportEvent *ev2 = dynamic_cast<TeleportEvent*>(field.getCell(j, i).getEvent());
+                if (ev2 != nullptr){
+                    std::cout << 'T'; 
+                    continue;
+                }
+                //std::cout << field.getCell(j, i).getEvent()->icon();
             }
             else if (field.getCell(j, i).getPassability()){
                 std::cout << '.';
@@ -18,4 +34,6 @@ void Show::showField(Field& field, Controller& contr){
         }
         std::cout << '\n';
     }
+
+    std::cout << contr.getPlayersParametrs(ParPlayer::HP) << " HP\n";
 }

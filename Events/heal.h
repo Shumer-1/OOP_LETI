@@ -12,7 +12,6 @@ class HealEvent: public Event{
     public:
     void action();
     HealEvent(int heal, Controller& controller);
-    char icon();
     HealEvent* copy();
 };
 

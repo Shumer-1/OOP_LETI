@@ -11,7 +11,6 @@ class TeleportEvent: public Event{
     void action();
     TeleportEvent(Controller& controller, Coords& coords);
     TeleportEvent* copy();
-    char icon();
 
 };
 

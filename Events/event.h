@@ -11,7 +11,6 @@ class Event {
     public: 
     virtual void action() = 0; // он пустой
     virtual Event* copy() = 0;
-    virtual char icon() = 0;
     // а в событиях через конструктор
     // здесь только action
 
