@@ -10,7 +10,7 @@ class CoordsObs: public IObserver{
     Coords coords;
 
     public:
-    bool update();
+    bool update() override;
     CoordsObs(Controller& contr);
 };
 #endif

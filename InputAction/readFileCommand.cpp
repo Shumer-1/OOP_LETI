@@ -7,14 +7,14 @@ FileRead::FileRead(){
     std::string line_RIGHT;
     std::string line_LEFT;
     std::string line_ENDGAME;
-    std::string line_JUMP;
     std::fstream in("commands.txt");
     if (in.is_open()){
-        if (!(std::getline(in, line_UP) && std::getline(in, line_DOWN) && std::getline(in, line_RIGHT) && std::getline(in, line_LEFT) && std::getline(in, line_ENDGAME) && std::getline(in, line_JUMP))){
+        std::cout << line_ENDGAME;
+        if (!(std::getline(in, line_UP) && std::getline(in, line_DOWN) && std::getline(in, line_RIGHT) && std::getline(in, line_LEFT) && std::getline(in, line_ENDGAME))){
             setDefault();
         }
         else{
-            std::string test = line_DOWN + line_ENDGAME + line_LEFT + line_RIGHT + line_UP + line_JUMP;
+            std::string test = line_DOWN + line_ENDGAME + line_LEFT + line_RIGHT + line_UP;
             int flag_repeat = 0;
             for (int i = 0; i < COUNT_OF_CMDS; i++){
                 for (int j = i+1; j < COUNT_OF_CMDS; j++){
@@ -35,7 +35,6 @@ FileRead::FileRead(){
                 control_keys[line_LEFT] = Commands::Command_Left;
                 control_keys[line_RIGHT] = Commands::Command_Right;
                 control_keys[line_ENDGAME] = Commands::Command_EndGame;
-                control_keys[line_JUMP] = Commands::Command_Jump;
             }
             
         }
