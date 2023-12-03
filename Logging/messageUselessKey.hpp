@@ -8,9 +8,9 @@ class MessageUselessKey: public Message{
     std::string key;
 
     public:
-    MessageState getMessageState();
+    std::string getMessage();
     MessageUselessKey(std::string key);
-    std::string getUselessKey();
+    std::string getUselessKey() const;
 };
 
 #endif

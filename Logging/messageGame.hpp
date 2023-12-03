@@ -9,9 +9,9 @@ class MessageGame: public Message{
     public:
     MessageGame(Field& field, Controller& contr);
     Coords getStartCoords();
-    int getSizeX();
-    int getSizeY();
-    MessageState getMessageState();
+    int getSizeX() const;
+    int getSizeY() const;
+    std::string getMessage();
 };
 
 #endif

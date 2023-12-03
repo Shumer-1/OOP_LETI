@@ -7,9 +7,9 @@
 class MessageWin: public Message{
     Player& player;
     public:
-    MessageState getMessageState();
+    std::string getMessage();
     MessageWin(Player& player);
-    int getHP();
-    int getDamage();
+    int getHP() const;
+    int getDamage() const;
 };
 #endif

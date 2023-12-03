@@ -13,13 +13,16 @@
 
 
 int main(){
+    std::cout << "Select mode of logging: 1, 2 or 3";
+    int mode;
+    std::cin >> mode;
     Player player = Player();
     Field field = Field();
     Controller contr = Controller(player, field);
    
     //Show::showField(field, contr);
     field = MakeField::generateLevel(contr);
-    Game game = Game(contr, player, field);
+    Game game = Game(contr, player, field, mode);
     game.startGame();
     //game_over = 0;
     // как сделать гейм овер лучше - пока печать с ветвлением - три состояния игры.

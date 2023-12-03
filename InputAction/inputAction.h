@@ -8,9 +8,11 @@
 class InputAction{
     bool state;
     std::map<std::string, Commands> cmds;
+    std::string now_str;
 
     public:
     InputAction(std::map<std::string, Commands> map);
     Commands readAction();
+    std::string getKey();
 };
 #endif

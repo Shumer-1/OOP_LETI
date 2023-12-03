@@ -1,17 +1,13 @@
 #ifndef MESSAGE
 #define MESSAGE
 
-enum MessageState{
-    MessageWinState,
-    MessageLoseState,
-    MessageGameState,
-    MessageControlKeyState,
-    MessageUselessKeyState
-};
+#include <string>
+#include <ostream>
 
 
 class Message{
     public:
-    MessageState virtual getMessageState() = 0; 
+    std::string virtual getMessage() = 0;
 };
+
 #endif

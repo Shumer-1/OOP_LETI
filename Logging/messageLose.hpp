@@ -8,7 +8,7 @@ class MessageLose: public Message{
 
     public:
     MessageLose(Controller& contr);
-    MessageState getMessageState();
-    Coords* getCoords();
+    std::string getMessage();
+    Coords* getCoords() const;
 };
-#endif MESSAGELOSE
+#endif

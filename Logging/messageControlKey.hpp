@@ -10,8 +10,8 @@ class MessageControlKey: public Message{
 
     public:
     MessageControlKey(Commands cmd, std::string key);
-    Commands getCommand();
-    std::string getKey();
-    MessageState getMessageState();
+    Commands getCommand() const;
+    std::string getKey() const;
+    std::string getMessage();
 };
 #endif

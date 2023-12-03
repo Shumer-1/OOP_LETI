@@ -15,6 +15,16 @@
 #include "./HPObserver.h"
 #include "./CoordsObs.hpp"
 #include "./gameTracker.hpp"
+#include "../Logging/message.hpp"
+#include "../Logging/messageControlKey.hpp"
+#include "../Logging/messageGame.hpp"
+#include "../Logging/messageLose.hpp"
+#include "..//Logging/messageUselessKey.hpp"
+#include "../Logging/messageWin.hpp"
+#include "../Logging/handler.hpp"
+#include "../Logging/consoleLogger.hpp"
+#include "../Logging/fileLogger.hpp"
+
 #include <iostream>
 
 enum GameState{
@@ -32,10 +42,11 @@ class Game{
     Player& player;
     Field& field;
     GameState game_state;
+    int mode;
     
     void isPlaying();
     public:
-    Game(Controller& controller, Player& player, Field& field);
+    Game(Controller& controller, Player& player, Field& field, int mode);
     void startGame();
     void endGame();
 };

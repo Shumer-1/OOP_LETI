@@ -1,6 +1,6 @@
 f_all: all clean
-all: main.o player.o field.o controller.o  cell.o coords.o heal.o teleport.o trap.o makeField.o showField.o readFileCommand.o inputAction.o game.o gameTracker.o CoordsObs.o HPObserver.o
-	g++ main.o player.o field.o controller.o cell.o coords.o heal.o trap.o teleport.o makeField.o showField.o readFileCommand.o inputAction.o gameTracker.o CoordsObs.o HPObserver.o game.o -o main
+all: main.o player.o field.o controller.o  cell.o coords.o heal.o teleport.o trap.o makeField.o showField.o readFileCommand.o inputAction.o game.o gameTracker.o CoordsObs.o HPObserver.o messageWin.o messageControlKey.o messageGame.o messageLose.o messageUselessKey.o
+	g++ main.o player.o field.o controller.o cell.o coords.o heal.o trap.o teleport.o makeField.o showField.o readFileCommand.o inputAction.o gameTracker.o CoordsObs.o HPObserver.o game.o messageWin.o messageControlKey.o messageGame.o messageLose.o messageUselessKey.o -o main
 main.o: main.cpp Characters/player.h Controller/controller.h Field/field.h Field/cell.h Field/coords.h Events/event.h Events/heal.h Events/teleport.h Events/trap.h Game/game.h
 	g++ -c main.cpp
 game.o: Characters/player.h Field/field.h Controller/controller.h Field/cell.h Field/coords.h Events/heal.h Events/teleport.h Events/trap.h Field/makeField.h Field/showField.h InputAction/readFileCommand.h InputAction/inputAction.h Game/game.h Game/game.cpp Game/CoordsObs.hpp Game/HPObserver.h Game/gameTracker.hpp Game/Observer.hpp
@@ -35,5 +35,16 @@ HPObserver.o: Controller/controller.h Game/Observer.hpp Game/HPObserver.h Game/H
 	g++ -c Game/HPObserver.cpp
 gameTracker.o: Field/showField.h Game/HPObserver.h Game/CoordsObs.hpp Game/gameTracker.hpp Game/gameTracker.cpp
 	g++ -c Game/gameTracker.cpp
+messageControlKey.o: Logging/messageControlKey.hpp Logging/messageControlKey.cpp Logging/message.hpp InputAction/inputAction.h 
+	g++ -c Logging/messageControlKey.cpp
+messageGame.o: Logging/messageGame.hpp Logging/messageGame.cpp Logging/message.hpp Controller/controller.h Field/field.h
+	g++ -c Logging/messageGame.cpp
+messageLose.o: Logging/messageLose.hpp Logging/messageLose.cpp Logging/message.hpp Controller/controller.h
+	g++ -c Logging/messageLose.cpp
+messageUselessKey.o: Logging/messageUselessKey.cpp Logging/messageUselessKey.hpp Logging/message.hpp InputAction/inputAction.h
+	g++ -c Logging/messageUselessKey.cpp
+messageWin.o: Logging/messageWin.cpp Logging/messageWin.hpp Logging/message.hpp Controller/controller.h
+	g++ -c Logging/messageWin.cpp
+
 clean:
 	rm -rf *.o

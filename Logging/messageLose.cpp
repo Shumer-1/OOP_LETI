@@ -2,9 +2,10 @@
 
 MessageLose::MessageLose(Controller& contr): contr(contr){}
 
-Coords* MessageLose::getCoords(){
+Coords* MessageLose::getCoords() const{
     return contr.getCoords();
 }
-MessageState MessageLose::getMessageState(){
-        return MessageState::MessageLoseState;
+std::string MessageLose::getMessage(){
+    std::string res_string = "You lose this game. Coordinate X is " + std::to_string(this->getCoords()->getX()) + ". Coordinate Y is " + std::to_string(this->getCoords()->getY()) + "\n";
+    return res_string;
 }

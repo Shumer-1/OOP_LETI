@@ -15,8 +15,12 @@ Commands InputAction::readAction(){
 
     if (cmds.count(c) == 1){
         Commands cmd = cmds[c];
+        now_str = c;
         return cmd;
     }
     //system("stty cooked");
     return Command_Empty;
+}
+std::string InputAction::getKey(){
+    return now_str;
 }

@@ -5,12 +5,13 @@ Coords MessageGame::getStartCoords(){
     Coords coords = Coords();
     return coords;
 }
-int MessageGame::getSizeX(){
+int MessageGame::getSizeX() const{
     return field.getSizeX();
 }
-int MessageGame::getSizeY(){
+int MessageGame::getSizeY() const{
     return field.getSizeY();
 }
-MessageState MessageGame::getMessageState(){
-    return MessageState::MessageGameState;
+std::string MessageGame::getMessage(){
+    std::string res_string1 = "You started new game. Weight of field is " + std::to_string(this->getSizeX()) + " and height is " + std::to_string(this->getSizeY()) + "\n";
+    return res_string1;
 }
