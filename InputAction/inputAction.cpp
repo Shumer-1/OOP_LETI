@@ -12,12 +12,12 @@ Commands InputAction::readAction(){
     system("stty cooked");
     // std::string temp = c;
     //system("clear");
-
+    Commands cmd = cmds[c];
     if (cmds.count(c) == 1){
-        Commands cmd = cmds[c];
         now_str = c;
         return cmd;
     }
+    now_str = c;
     //system("stty cooked");
     return Command_Empty;
 }

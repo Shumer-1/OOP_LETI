@@ -1,5 +1,5 @@
 #include "./handler.hpp"
-
+// set для логгеров, список инициализации - передача множества - создаем только то, что нужно.
 Handler::Handler(ConsoleLogger& consL, FileLogger& fileL, int mode): consL(consL), fileL(fileL), mode(mode){}
 void Handler::logInfo(Message* message){
     if (mode == 1){

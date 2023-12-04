@@ -13,7 +13,7 @@
 
 
 int main(){
-    std::cout << "Select mode of logging: 1, 2 or 3";
+    std::cout << "Select mode of logging: 1, 2 or 3\n";
     int mode;
     std::cin >> mode;
     Player player = Player();

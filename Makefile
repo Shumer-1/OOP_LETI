@@ -1,9 +1,9 @@
 f_all: all clean
-all: main.o player.o field.o controller.o  cell.o coords.o heal.o teleport.o trap.o makeField.o showField.o readFileCommand.o inputAction.o game.o gameTracker.o CoordsObs.o HPObserver.o messageWin.o messageControlKey.o messageGame.o messageLose.o messageUselessKey.o
-	g++ main.o player.o field.o controller.o cell.o coords.o heal.o trap.o teleport.o makeField.o showField.o readFileCommand.o inputAction.o gameTracker.o CoordsObs.o HPObserver.o game.o messageWin.o messageControlKey.o messageGame.o messageLose.o messageUselessKey.o -o main
+all: main.o player.o field.o controller.o  cell.o coords.o heal.o teleport.o trap.o makeField.o showField.o readFileCommand.o inputAction.o game.o gameTracker.o CoordsObs.o HPObserver.o messageWin.o messageControlKey.o messageGame.o messageLose.o messageUselessKey.o consoleLogger.o fileLogger.o  handler.o
+	g++ main.o player.o field.o controller.o cell.o coords.o heal.o trap.o teleport.o makeField.o showField.o readFileCommand.o inputAction.o gameTracker.o CoordsObs.o HPObserver.o game.o messageWin.o messageControlKey.o messageGame.o messageLose.o messageUselessKey.o consoleLogger.o fileLogger.o  handler.o -o main
 main.o: main.cpp Characters/player.h Controller/controller.h Field/field.h Field/cell.h Field/coords.h Events/event.h Events/heal.h Events/teleport.h Events/trap.h Game/game.h
 	g++ -c main.cpp
-game.o: Characters/player.h Field/field.h Controller/controller.h Field/cell.h Field/coords.h Events/heal.h Events/teleport.h Events/trap.h Field/makeField.h Field/showField.h InputAction/readFileCommand.h InputAction/inputAction.h Game/game.h Game/game.cpp Game/CoordsObs.hpp Game/HPObserver.h Game/gameTracker.hpp Game/Observer.hpp
+game.o: Characters/player.h Field/field.h Controller/controller.h Field/cell.h Field/coords.h Events/heal.h Events/teleport.h Events/trap.h Field/makeField.h Field/showField.h InputAction/readFileCommand.h InputAction/inputAction.h Game/game.h Game/game.cpp Game/CoordsObs.hpp Game/HPObserver.h Game/gameTracker.hpp Game/Observer.hpp Logging/message.hpp Logging/messageControlKey.hpp Logging/messageGame.hpp Logging/messageLose.hpp Logging/messageUselessKey.hpp Logging/messageWin.hpp Logging/handler.hpp Logging/consoleLogger.hpp Logging/fileLogger.hpp
 	g++ -c Game/game.cpp
 player.o: Characters/player.cpp Characters/player.h
 	g++ -c Characters/player.cpp
@@ -45,6 +45,13 @@ messageUselessKey.o: Logging/messageUselessKey.cpp Logging/messageUselessKey.hpp
 	g++ -c Logging/messageUselessKey.cpp
 messageWin.o: Logging/messageWin.cpp Logging/messageWin.hpp Logging/message.hpp Controller/controller.h
 	g++ -c Logging/messageWin.cpp
-
+consoleLogger.o: Logging/consoleLogger.hpp Logging/consoleLogger.cpp Logging/message.hpp Logging/logger.hpp
+	g++ -c Logging/consoleLogger.cpp
+fileLogger.o: Logging/fileLogger.hpp Logging/fileLogger.cpp Logging/logger.hpp Logging/operator.hpp
+	g++ -c Logging/fileLogger.cpp
+handler.o: Logging/handler.hpp Logging/handler.cpp Logging/consoleLogger.hpp Logging/fileLogger.hpp
+	g++ -c Logging/handler.cpp
+operator.o: Logging/message.hpp Logging/messageControlKey.hpp Logging/messageGame.hpp Logging/messageLose.hpp Logging/messageUselessKey.hpp Logging/messageWin.hpp Logging/operator.cpp Logging/operator.hpp
+	g++ -c Logging/operator.cpp
 clean:
 	rm -rf *.o

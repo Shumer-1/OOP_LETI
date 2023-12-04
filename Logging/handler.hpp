@@ -1,3 +1,7 @@
+#ifndef HANDLER
+#define HANDLER
+
+
 #include "./consoleLogger.hpp"
 #include "./fileLogger.hpp"
 
@@ -11,3 +15,4 @@ class Handler{
     void logInfo(Message* message);
 
 };
+#endif

@@ -1,3 +1,6 @@
+#ifndef FILELOGGER
+#define FILELOGGER
+
 #include <iostream>
 #include "./logger.hpp"
 #include "./operator.hpp"
@@ -5,6 +8,6 @@
 
 class FileLogger: public Logger{
     public:
-    void write(Message* message);
-
+    void write(const Message* message);
 };
+#endif
