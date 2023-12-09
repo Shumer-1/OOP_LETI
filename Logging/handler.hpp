@@ -4,14 +4,15 @@
 
 #include "./consoleLogger.hpp"
 #include "./fileLogger.hpp"
+#include <vector>
 
 class Handler{
-    ConsoleLogger& consL;
-    FileLogger& fileL;
+    std::vector<Logger> loggers;
+    
     int mode;
 
     public:
-    Handler(ConsoleLogger& consL, FileLogger& fileL, int mode);
+    Handler(std::vector<Logger> loggers);
     void logInfo(Message* message);
 
 };

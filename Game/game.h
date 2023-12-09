@@ -42,11 +42,11 @@ class Game{
     Player& player;
     Field& field;
     GameState game_state;
-    int mode;
+    bool* lgs;
     
     void isPlaying();
     public:
-    Game(Controller& controller, Player& player, Field& field, int mode);
+    Game(Controller& controller, Player& player, Field& field, bool* lgs);
     void startGame();
     void endGame();
 };

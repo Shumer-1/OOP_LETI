@@ -10,19 +10,34 @@
 #include "InputAction/inputAction.h"
 #include "Game/game.h"
 #include <vector>
-
+#include <hash_map>
 
 int main(){
-    std::cout << "Select mode of logging: 1, 2 or 3\n";
-    int mode;
-    std::cin >> mode;
+    //Enemy<MovementGivenWay, Action> enemy = Enemy<MovementGivenWay, Action>();
+    std::cout << "Select mode of logging: ConsoleLogger, FileLogger or both\n";
+    std::cout << "ConsoleLogger? Yes or no\n";
+    std::string console_mode;
+    std::cin >> console_mode;
+    std::cout << "FileLogger? Yes or no\n";
+    std::string file_mode;
+    std::cin >> console_mode;
+    bool consL = false;
+    bool fileL = false;
+    if (console_mode == "Yes"){
+        consL = true;
+    }
+    if (file_mode == "Yes"){
+        fileL = true;
+    }
+    bool *lgs = new bool[2];
     Player player = Player();
     Field field = Field();
     Controller contr = Controller(player, field);
    
     //Show::showField(field, contr);
     field = MakeField::generateLevel(contr);
-    Game game = Game(contr, player, field, mode);
+    Game game = Game(contr, player, field, lgs);
+    delete[] lgs;
     game.startGame();
     //game_over = 0;
     // как сделать гейм овер лучше - пока печать с ветвлением - три состояния игры.

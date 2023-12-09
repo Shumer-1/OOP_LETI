@@ -1,9 +1,8 @@
 #include "game.h"
+#include <vector>
 
-
-Game::Game(Controller& controller, Player& player, Field& field, int mode): controller(controller), player(player), field(field){
+Game::Game(Controller& controller, Player& player, Field& field, bool* lgs): controller(controller), player(player), field(field), lgs(lgs){
     game_state = GameState::NotStarted;
-    this->mode = mode;
 }
 void Game::startGame(){
     game_state = GameState::Playing;
@@ -18,14 +17,23 @@ void Game::endGame(){
 
 void Game::isPlaying(){
     Show::showField(field, controller);
-    ConsoleLogger consL = ConsoleLogger();
-    FileLogger fileL = FileLogger();
-    Handler hand = Handler(consL, fileL, mode);
+    //ConsoleLogger consL = ConsoleLogger();
+    // FileLogger fileL = FileLogger();
+    std::vector<Logger> loggers;
+    if (lgs[0] == true){
+        loggers.push_back(FileLogger());
+    }
+    if (lgs[1] == true){
+        loggers.push_back(ConsoleLogger());
+    }
+    Handler hand = Handler(loggers);
     Message * mesG = new MessageGame(field, controller); 
     hand.logInfo(mesG);
     delete(mesG);
+    
     FileRead fr = FileRead();
     InputAction ia = InputAction(fr.getControlKeys());
+
     HPObserver hp_obs = HPObserver(controller);
     CoordsObs coords_obs = CoordsObs(controller);
     GameTracker game_tracker = GameTracker(hp_obs, coords_obs, controller, field);
