@@ -1,7 +1,7 @@
 #include "./action.hpp"
 #include "controller.h"
 
-class ActionDamage: public Action{
+class ActionPush: public Action{
     Controller& contr;
     Coords& enemyCoords;
     public:

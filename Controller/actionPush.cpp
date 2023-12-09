@@ -1,7 +1,8 @@
-#include "actionDamage.hpp"
+#include "actionPush.hpp"
 
-void ActionDamage::enemyAction(){
+void ActionPush::enemyAction(){
     if (std::abs(enemyCoords.getX() - contr.getCoords()->getX()) <= 1 || std::abs(enemyCoords.getY() - contr.getCoords()->getY()) <= 1){
-        contr.changePlayersParametrs(HP, -10);
+        contr.getCoords()->setX(1);
+        contr.getCoords()->setY(1);
     }
 }
