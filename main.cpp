@@ -9,6 +9,14 @@
 #include "InputAction/readFileCommand.h"
 #include "InputAction/inputAction.h"
 #include "Game/game.h"
+#include "Controller/action.hpp"
+#include "Controller/actionDamage.hpp"
+#include "Controller/actionPush.hpp"
+#include "Controller/enemyController.hpp"
+#include "Controller/movement.hpp"
+#include "Controller/movementGivenWay.hpp"
+#include "Controller/movementToPlayer.hpp"
+
 #include <vector>
 #include <hash_map>
 
@@ -33,10 +41,12 @@ int main(){
     Player player = Player();
     Field field = Field();
     Controller contr = Controller(player, field);
-   
+    Enemy<MovementGivenWay, ActionDamage> firstEnemy;
+    Enemy<MovementToPlayer, ActionPush> secondEnemy;
+    EnemyController enContr = EnemyController(firstEnemy, secondEnemy);
     //Show::showField(field, contr);
     field = MakeField::generateLevel(contr);
-    Game game = Game(contr, player, field, lgs);
+    Game game = Game(contr, player, field, lgs, enContr);
     delete[] lgs;
     game.startGame();
     //game_over = 0;

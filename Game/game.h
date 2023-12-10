@@ -24,6 +24,8 @@
 #include "../Logging/handler.hpp"
 #include "../Logging/consoleLogger.hpp"
 #include "../Logging/fileLogger.hpp"
+#include "../Characters/enemy.hpp"
+#include "../Controller/enemyController.hpp"
 
 #include <iostream>
 
@@ -41,12 +43,13 @@ class Game{
     Controller& controller;
     Player& player;
     Field& field;
+    EnemyController& enContr;
     GameState game_state;
     bool* lgs;
     
     void isPlaying();
     public:
-    Game(Controller& controller, Player& player, Field& field, bool* lgs);
+    Game(Controller& controller, Player& player, Field& field, bool* lgs, EnemyController& enContr);
     void startGame();
     void endGame();
 };

@@ -25,3 +25,4 @@ void EnemyController::firstEnemyMove(){
 void EnemyController::secondEnemyMove(){
     enemy2.moveEnemy();
 }
+EnemyController::EnemyController(Enemy<MovementGivenWay, ActionDamage>& enemy1, Enemy<MovementToPlayer, ActionPush>& enemy2): enemy1(enemy1), enemy2(enemy2){}

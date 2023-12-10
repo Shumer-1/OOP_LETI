@@ -1,7 +1,7 @@
 #include "game.h"
 #include <vector>
 
-Game::Game(Controller& controller, Player& player, Field& field, bool* lgs): controller(controller), player(player), field(field), lgs(lgs){
+Game::Game(Controller& controller, Player& player, Field& field, bool* lgs, EnemyController& enContr): controller(controller), player(player), field(field), lgs(lgs), enContr(enContr){
     game_state = GameState::NotStarted;
 }
 void Game::startGame(){
@@ -16,7 +16,7 @@ void Game::endGame(){
 }
 
 void Game::isPlaying(){
-    Show::showField(field, controller);
+    Show::showField(field, controller, enContr);
     //ConsoleLogger consL = ConsoleLogger();
     // FileLogger fileL = FileLogger();
     std::vector<Logger> loggers;
@@ -36,7 +36,7 @@ void Game::isPlaying(){
 
     HPObserver hp_obs = HPObserver(controller);
     CoordsObs coords_obs = CoordsObs(controller);
-    GameTracker game_tracker = GameTracker(hp_obs, coords_obs, controller, field);
+    GameTracker game_tracker = GameTracker(hp_obs, coords_obs, controller, field, enContr);
 
     while (true){
         game_tracker.gameTracking();
@@ -49,6 +49,10 @@ void Game::isPlaying(){
             hand.logInfo(mesU);
         }
         if (cmd != Command_Empty && cmd != Command_EndGame){
+            enContr.firstEnemyAction();
+            enContr.secondEnemyAction();
+            enContr.firstEnemyMove();
+            enContr.secondEnemyMove();
             Move move;
             Message* mesC = new MessageControlKey(cmd, ia.getKey()); 
             hand.logInfo(mesC);

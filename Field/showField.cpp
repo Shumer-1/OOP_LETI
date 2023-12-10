@@ -4,10 +4,11 @@ void Show::showField(Field& field, Controller& contr, EnemyController& enContr){
     std::cout << '\n';
     for (int i = 0; i < field.getSizeY(); i++){
         for (int j = 0; j < field.getSizeX(); j++){
-            if (contr.getEndCoords().getX() == j && contr.getEndCoords().getY() == i)
-                std::cout << 'E';
             if (contr.getCoords()->getX() == j && contr.getCoords()->getY() == i){
                 std::cout << 'P';
+            }
+            else if ((enContr.getFirstEnemyCoords().getX() == j && enContr.getFirstEnemyCoords().getY() == i) || (enContr.getSecondEnemyCoords().getX() == j && enContr.getSecondEnemyCoords().getY() == i)){
+                std::cout << "E";
             }
             else if (field.getCell(j, i).getEvent() != nullptr){
                 TrapEvent *ev = dynamic_cast<TrapEvent*>(field.getCell(j, i).getEvent());
@@ -25,7 +26,6 @@ void Show::showField(Field& field, Controller& contr, EnemyController& enContr){
                     std::cout << 'T'; 
                     continue;
                 }
-                //std::cout << field.getCell(j, i).getEvent()->icon();
             }
             else if (field.getCell(j, i).getPassability()){
                 std::cout << '.';

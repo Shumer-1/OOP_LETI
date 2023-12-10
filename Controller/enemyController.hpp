@@ -5,12 +5,20 @@
 #include "./movement.hpp"
 #include "../Characters/enemy.hpp"
 #include "../Field/coords.h"
+#include "./actionDamage.hpp"
+#include "./movementGivenWay.hpp"
+#include "./movementToPlayer.hpp"
+#include "./actionDamage.hpp"
+#include "./actionPush.hpp"
+
 
 class EnemyController{
-    Enemy<Movement, Action>& enemy1;
-    Enemy<Movement, Action>& enemy2;
+    Enemy<MovementGivenWay, ActionDamage>& enemy1;
+    Enemy<MovementToPlayer, ActionPush>& enemy2;
 
     public:
+    EnemyController(Enemy<MovementGivenWay, ActionDamage>& enemy1, Enemy<MovementToPlayer, ActionPush>& enemy2);
+
     Coords getFirstEnemyCoords();
     Coords getSecondEnemyCoords();
     void setFirstEnemyCoords(Coords coords);
