@@ -18,8 +18,7 @@
 #include "Controller/movementToPlayer.hpp"
 
 #include <vector>
-#include <hash_map>
-
+class EnemyController;
 int main(){
     //Enemy<MovementGivenWay, Action> enemy = Enemy<MovementGivenWay, Action>();
     std::cout << "Select mode of logging: ConsoleLogger, FileLogger or both\n";
@@ -41,8 +40,8 @@ int main(){
     Player player = Player();
     Field field = Field();
     Controller contr = Controller(player, field);
-    Enemy<MovementGivenWay, ActionDamage> firstEnemy;
-    Enemy<MovementToPlayer, ActionPush> secondEnemy;
+    Enemy<MovementGivenWay, ActionDamage> firstEnemy = Enemy<MovementGivenWay, ActionDamage>(contr, field);
+    Enemy<MovementToPlayer, ActionPush> secondEnemy = Enemy<MovementToPlayer, ActionPush>(contr, field);
     EnemyController enContr = EnemyController(firstEnemy, secondEnemy);
     //Show::showField(field, contr);
     field = MakeField::generateLevel(contr);

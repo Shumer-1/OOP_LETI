@@ -17,14 +17,14 @@ void Game::endGame(){
 
 void Game::isPlaying(){
     Show::showField(field, controller, enContr);
-    //ConsoleLogger consL = ConsoleLogger();
+    // ConsoleLogger consL = ConsoleLogger();
     // FileLogger fileL = FileLogger();
-    std::vector<Logger> loggers;
+    std::vector<Logger*> loggers;
     if (lgs[0] == true){
-        loggers.push_back(FileLogger());
+        loggers.push_back(new FileLogger());
     }
     if (lgs[1] == true){
-        loggers.push_back(ConsoleLogger());
+        loggers.push_back(new ConsoleLogger());
     }
     Handler hand = Handler(loggers);
     Message * mesG = new MessageGame(field, controller); 
@@ -37,7 +37,7 @@ void Game::isPlaying(){
     HPObserver hp_obs = HPObserver(controller);
     CoordsObs coords_obs = CoordsObs(controller);
     GameTracker game_tracker = GameTracker(hp_obs, coords_obs, controller, field, enContr);
-
+    
     while (true){
         game_tracker.gameTracking();
         Commands cmd = ia.readAction();
@@ -50,9 +50,9 @@ void Game::isPlaying(){
         }
         if (cmd != Command_Empty && cmd != Command_EndGame){
             enContr.firstEnemyAction();
-            enContr.secondEnemyAction();
+            //enContr.secondEnemyAction();
             enContr.firstEnemyMove();
-            enContr.secondEnemyMove();
+            //enContr.secondEnemyMove();
             Move move;
             Message* mesC = new MessageControlKey(cmd, ia.getKey()); 
             hand.logInfo(mesC);

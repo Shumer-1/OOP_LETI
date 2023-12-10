@@ -9,7 +9,7 @@ Coords EnemyController::getSecondEnemyCoords(){
 void EnemyController::setFirstEnemyCoords(Coords coords){
     enemy1.setCoords(coords);
 }
-void EnemyController::setFirstEnemyCoords(Coords coords){
+void EnemyController::setSecondEnemyCoords(Coords coords){
     enemy2.setCoords(coords);
 }
 

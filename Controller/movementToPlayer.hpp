@@ -1,3 +1,5 @@
+#ifndef MOVEMENTTOPLAYER
+#define MOVEMENTTOPLAYER
 #include "../Controller/controller.h"
 #include "./movement.hpp"
 
@@ -11,3 +13,5 @@ class MovementToPlayer: public Movement{
     MovementToPlayer(Coords& coords, Controller& contr, Field& field);
     Coords getCoords();
 };
+
+#endif

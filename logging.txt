@@ -1,1 +1,6 @@
 
+You started new game. Weight of field is 40 and height is 20
+You used the control key 
+ and it is the command UP
+You used the control key d and it is the command RIGHT
+You lose this game. Coordinate X is 2. Coordinate Y is 1

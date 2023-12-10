@@ -3,8 +3,11 @@
 
 
 void MovementGivenWay::move(){
+    std::random_device rand;
     int step = rand() % 4;
-    while (true){
+    std::cout << step << "\n";
+    int counter = 0;
+    while (counter < 4){
         //UP
         if (step == 0 && coords.getY() + 1 > 0 && coords.getY() + 1 < field.getSizeY() && field.getCell(coords.getX(), coords.getY()+1).getPassability()){
             coords.setY(coords.getY()+1);
@@ -25,6 +28,8 @@ void MovementGivenWay::move(){
             coords.setY(coords.getX()-1);
             break;
         }
+        step = rand()%4;
+        counter++;
     }
 
 }

@@ -7,12 +7,12 @@
 #include <vector>
 
 class Handler{
-    std::vector<Logger> loggers;
+    std::vector<Logger*> loggers;
     
     int mode;
 
     public:
-    Handler(std::vector<Logger> loggers);
+    Handler(std::vector<Logger*> loggers);
     void logInfo(Message* message);
 
 };

@@ -8,9 +8,10 @@
 #include "./actionDamage.hpp"
 #include "./movementGivenWay.hpp"
 #include "./movementToPlayer.hpp"
-#include "./actionDamage.hpp"
 #include "./actionPush.hpp"
 
+class Field;
+class ShowField;
 
 class EnemyController{
     Enemy<MovementGivenWay, ActionDamage>& enemy1;
@@ -22,7 +23,7 @@ class EnemyController{
     Coords getFirstEnemyCoords();
     Coords getSecondEnemyCoords();
     void setFirstEnemyCoords(Coords coords);
-    void setFirstEnemyCoords(Coords coords);
+    void setSecondEnemyCoords(Coords coords);
     void firstEnemyAction();
     void secondEnemyAction();
     void firstEnemyMove();
