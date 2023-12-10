@@ -1,6 +1,6 @@
 #include "showField.h"
 
-void Show::showField(Field& field, Controller& contr){
+void Show::showField(Field& field, Controller& contr, EnemyController& enContr){
     std::cout << '\n';
     for (int i = 0; i < field.getSizeY(); i++){
         for (int j = 0; j < field.getSizeX(); j++){

@@ -7,10 +7,14 @@
 #include "../Events/teleport.h"
 #include "../Events/trap.h"
 #include "../Events/event.h"
+#include "../Controller/action.hpp"
+#include "../Controller/movement.hpp"
+#include "../Characters/enemy.hpp"
+#include "../Controller/enemyController.hpp"
 
 class Controller;
 class Show{
     public:
-    void static showField(Field& field, Controller& contr);
+    void static showField(Field& field, Controller& contr, EnemyController& enContr);
 };
 #endif

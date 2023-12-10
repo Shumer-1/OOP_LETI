@@ -1,25 +1,26 @@
 #include "./enemy.hpp"
 
-template <class Move, class Action>
-Enemy<Move, Action>::Enemy(): hp(ENEMY_HP), damage(ENEMY_DAMAGE), rate(ENEMY_RATE){}
-template <class Move, class Action>
-int Enemy<Move, Action>::getDamage(){
-    return damage;
-}
-template <class Move, class Action>
-int Enemy<Move, Action>::getHP(){
-    return hp;
-}
-template <class Move, class Action>
-int Enemy<Move, Action>::getRate(){
-    return rate;
-}
-template <class Move, class Action>
-Coords Enemy<Move, Action>::getCoords(){
+template <class Movement, class Action>
+Enemy<Movement, Action>::Enemy(){}
+
+template <class Movement, class Action>
+Coords Enemy<Movement, Action>::getCoords(){
     return coords;
 }
-template <class Move, class Action>
-void Enemy<Move, Action>::setCoords(Coords coords){
+template <class Movement, class Action>
+void Enemy<Movement, Action>::setCoords(Coords coords){
     this->coords.setX(coords.getX());
     this->coords.setY(coords.getY());
+}
+
+template <class Movement, class Action>
+void Enemy<Movement, Action>::action(){
+    Action action = Action();
+    Action.enemyAction();
+}
+
+template <class Movement, class Action>
+void Enemy<Movement, Action>::moveEnemy(){
+    Movement move = Movement();
+    move.move();
 }

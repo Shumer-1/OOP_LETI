@@ -3,23 +3,16 @@
 
 #include "../Field/coords.h"
 
-#define ENEMY_HP 10
-#define ENEMY_DAMAGE 10
-#define ENEMY_RATE 10
 
-template<class Move, class Action>
+template<class Movement, class Action>
 class Enemy{
-    int hp;
-    int damage;
-    int rate;
     Coords coords;
 
     public:
-    int getHP();
-    int getDamage();
-    int getRate();
     Coords getCoords();
     void setCoords(Coords coords);
+    void action();
+    void moveEnemy();
     Enemy();
 };
 
