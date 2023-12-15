@@ -50,9 +50,9 @@ void Game::isPlaying(){
         }
         if (cmd != Command_Empty && cmd != Command_EndGame){
             enContr.firstEnemyAction();
-            //enContr.secondEnemyAction();
+            enContr.secondEnemyAction();
             enContr.firstEnemyMove();
-            //enContr.secondEnemyMove();
+            enContr.secondEnemyMove();
             Move move;
             Message* mesC = new MessageControlKey(cmd, ia.getKey()); 
             hand.logInfo(mesC);

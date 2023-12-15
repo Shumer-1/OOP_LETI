@@ -6,12 +6,12 @@
 #include <random>
 template<class Movement, class Action>
 class Enemy{
-    Coords coords;
+    Coords& coords;
     Controller& contr;
     Field& field;
     public:
     Coords getCoords();
-    void setCoords(Coords coords);
+    void setCoords(Coords& coords);
     void action();
     void moveEnemy();
     Enemy(Controller& contr, Field& field);
@@ -30,7 +30,7 @@ Coords Enemy<Movement, Action>::getCoords(){
     return coords;
 }
 template <class Movement, class Action>
-void Enemy<Movement, Action>::setCoords(Coords coords){
+void Enemy<Movement, Action>::setCoords(Coords &coords){
     this->coords.setX(coords.getX());
     this->coords.setY(coords.getY());
 }
